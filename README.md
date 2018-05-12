@@ -1,1 +1,2 @@
-#blackjack_server
+#Blackjack server
+serwer do gry w blackjacka
