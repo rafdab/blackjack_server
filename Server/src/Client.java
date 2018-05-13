@@ -3,42 +3,12 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 public class Client extends Thread{
+    private Player player;
     private Socket clientSocket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
-    private int clientId;
-    private String clientName;
-    private int numberOfCredits;
     LinkedList<Card> deck;
-
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    public int getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
-    public int getNumberOfCredits() {
-        return numberOfCredits;
-    }
-
-    public void setNumberOfCredits(int numberOfCredits) {
-        this.numberOfCredits = numberOfCredits;
-    }
-
-    public Client(String name, int numberOfCredits) {
-        this.clientName = name;
-        this.numberOfCredits = numberOfCredits;
-    }
+    private Card card;
 
     public Client() {
     }
@@ -59,19 +29,32 @@ public class Client extends Thread{
         return deck;
     }
 
+    public String playerInfo() {
+        return (player.getPlayerName() + " (" + player.getNumberOfCredits() + ")");
+    }
+
     public void run() {
         try {
-            System.out.println("Hello i'm new!");
             out = new ObjectOutputStream(clientSocket.getOutputStream());
             in = new ObjectInputStream(clientSocket.getInputStream());
 
-//wymiana danych z klientem
+            System.out.print("New player connected, and his name is ");
+            player = (Player)in.readObject();
+            System.out.println(playerInfo());
+            card = new Card(null, 0);
+            int i, bet;
+            while (card.getValue() != -1){
+                i = bet = 0;
+                out.writeObject(card);
+            }
 
             in.close();
             out.close();
             clientSocket.close();
         } catch (IOException e) {
-            System.err.println("connection to client failed");
+            System.err.println("Connection to client failed");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

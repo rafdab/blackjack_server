@@ -10,6 +10,7 @@ public class Server {
     private ServerSocket serverSocket;
 
     public Server(int portNumber) {
+        System.out.println("Server started!\nAwaiting players...");
         try {
             serverSocket = new ServerSocket(portNumber);
         } catch (IOException e) {
@@ -23,7 +24,7 @@ public class Server {
             try {
                 new Client(serverSocket.accept()).start();
             } catch (IOException e) {
-                System.err.println("Connection failed");
+                System.err.println("Connection to client failed");
                 e.printStackTrace();
             }
         }
@@ -33,7 +34,7 @@ public class Server {
         try {
             serverSocket.close();
         } catch (IOException e) {
-            System.err.println("Fail");
+            System.err.println("Failed successfully");
         }
     }
 }
