@@ -39,6 +39,7 @@ public class Blackjack {
                 standOnClick();
             }
         });
+
     }
 
     public Blackjack(Connection connection) {
@@ -57,6 +58,7 @@ public class Blackjack {
         });
 
         this.connection = connection;
+        card = new Card();
         JFrame frame = new JFrame("Blackjack");
         frame.setContentPane(new Blackjack().panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

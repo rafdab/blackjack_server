@@ -1,5 +1,3 @@
-package src;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.Collections;
@@ -46,8 +44,12 @@ public class Client extends Thread{
         while (true){
             card.setValue(0);
             out.writeObject(card);
+            System.out.println("Sending card to " + playerInfo());
+
             card = (Card) in.readObject();
             bet = card.getValue();
+            System.out.println(playerInfo() + " bet " + bet + " credits");
+
             if (bet == -1) break;
 
             srvCard = deck.pop();
@@ -89,21 +91,14 @@ public class Client extends Thread{
     public int serverTurn(Card srvCard) throws IOException {
         int points = srvCard.getValue();
         Card tmp = card;
-        while (points < 17){
+        while (points < 17) {
             tmp = deck.pop();
-            if (tmp.getValue() > 11){
+            if (tmp.getValue() > 11) {
                 points += 10;
-            }else points += tmp.getValue();
+            } else points += tmp.getValue();
             out.writeObject(tmp);
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            out.writeObject(tmp);
         }
-        tmp.setValue(0);
-        out.writeObject(tmp);
         return points;
     }
 
