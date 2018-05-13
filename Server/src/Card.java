@@ -1,3 +1,5 @@
+package src;
+
 public class Card implements java.io.Serializable{
     private String suit;
     private int value;

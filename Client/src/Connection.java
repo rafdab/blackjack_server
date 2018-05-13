@@ -23,6 +23,14 @@ public class Connection {
         return card;
     }
 
+    public void sendCard(Card card) {
+        try {
+            out.writeObject(card);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Connection(String ip, String port, String playerName) {
         this.playerName = playerName;
         try {

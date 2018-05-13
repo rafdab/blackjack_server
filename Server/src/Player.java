@@ -1,3 +1,5 @@
+package src;
+
 public class Player implements java.io.Serializable{
 
     private String playerName;

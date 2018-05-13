@@ -1,3 +1,5 @@
+package src;
+
 import javax.swing.*;
 import java.util.Collection;
 import java.util.Collections;
@@ -9,5 +11,6 @@ public class Main {
     public static void main(String[] args){
         Server server = new Server(1050);
         server.begin();
+        server.closeConnection();
     }
 }

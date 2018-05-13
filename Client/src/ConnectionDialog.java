@@ -43,12 +43,12 @@ public class ConnectionDialog extends JDialog {
     }
 
     private void onOK() {
-        new Blackjack(new Connection(ipAddress.getText(), portNumber.getText(), playerName.getText()));
         dispose();
+        new Blackjack(new Connection(ipAddress.getText(), portNumber.getText(), playerName.getText()));
     }
 
     private void onCancel() {
-        System.exit(0);
         dispose();
+        System.exit(0);
     }
 }

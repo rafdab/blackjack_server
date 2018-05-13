@@ -25,4 +25,26 @@ public class Card implements java.io.Serializable{
         this.suit = suit;
         this.value = value;
     }
+
+    public String printCard(){
+        String tmp;
+        switch (value){
+            case 11:
+                tmp = "Ace of " + suit;
+                break;
+            case 12:
+                tmp = "Jack of " + suit;
+                break;
+            case 13:
+                tmp = "Queen of " + suit;
+                break;
+            case 14:
+                tmp = "King of " + suit;
+                break;
+            default:
+                tmp = value + " of " + suit;
+                break;
+        }
+        return tmp;
+    }
 }
