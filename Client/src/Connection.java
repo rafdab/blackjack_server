@@ -38,10 +38,14 @@ public class Connection {
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
             out.writeObject(new Player(playerName));
+            card = (Card) in.readObject();
+            System.err.println(card.getSuit());
 
         } catch (IOException e) {
             System.err.println("Unknown host");
             System.exit(-1);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

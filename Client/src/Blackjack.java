@@ -75,7 +75,7 @@ public class Blackjack {
         playersPoints.setText("0");
         dealersPoints.setText("0");
         remainingCredits.setText(Integer.toString(credits));
-        while (true) {
+      //  while (true) {
             card = connection.getCard();
             if (card.getValue() == 0) {
                 while (bet > credits && bet <-1) bet = Integer.parseInt(JOptionPane.showInputDialog(panel, "How much credits do you want to bet?", null));
@@ -95,10 +95,11 @@ public class Blackjack {
             clP += cardValue();
             playersHand.setText(playersHand.getText() + card.printCard() + "\n");
             playersPoints.setText(Integer.toString(clP));
-        }
+       // }
     }
 
     public void hitOnClick(){
+        card = new Card();
         card.setValue(1);
         connection.sendCard(card);
         card = connection.getCard();

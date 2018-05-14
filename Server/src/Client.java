@@ -110,11 +110,13 @@ public class Client extends Thread{
             System.out.print("New player connected, and his name is ");
             player = (Player)in.readObject();
             System.out.println(playerInfo());
+            card = new Card("hi", 0);
+            out.writeObject(card);
             startGame();
-
-            in.close();
-            out.close();
-            clientSocket.close();
+//
+//            in.close();
+//            out.close();
+//            clientSocket.close();
         } catch (IOException e) {
             System.err.println("Connection to client failed");
             e.printStackTrace();
